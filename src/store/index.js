@@ -33,6 +33,7 @@ export default new Vuex.Store({
   },
   mutations: {
     // data의 methods와 비슷한 역할
+    // 동기적으로 실행 : 반드시 앞의 명령어가 수행된뒤에 실행 (순차적)
     addcount: function (state) {
       state.count++;
     },
@@ -43,6 +44,34 @@ export default new Vuex.Store({
       state.count += n;
     },
   },
-  actions: {},
+  actions: {
+    // 비동기적으로 실행 : 동시에 실행 (따로 빠져나와서 실행)
+    // 요청한 결과가 그 자리에서 주어지지 않음
+    // : 동시에 실행되기 때문에 다른 작업이 실행되고 나중에 결과가 나올 수 있음
+    addcount(context) {
+      //mutations의 메서드를 들고와 상태변화(state) 를 추적할수 있다
+      context.commit("addcount");
+      // console.log(context);
+    },
+    // 비동기로 실행
+    timer: function (context) {
+      setTimeout(function () {
+        context.commit("addcount");
+      }, 1000);
+    },
+    // 비동기로 실행 + 인자값 받아오기
+    ntimer: function (context, time) {
+      setTimeout(function () {
+        // Matation의 메소드를 commit할때 인자값을 전달하고 싶다면
+        // , 를 통해 값을 같이 보내준다.
+        context.commit("ncount", time.count);
+      }, time.time);
+    },
+    timersecond: function (context) {
+      setInterval(function () {
+        context.commit("addcount");
+      }, 1000);
+    },
+  },
   modules: {},
 });

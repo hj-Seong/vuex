@@ -12,14 +12,16 @@
 
     <button @click="addcount">helloworld에서 추가</button>
     <button @click="ncount(num)">{{num}}추가</button>
+    <button @click="ntimer({count : 50, time :10000})">10초 뒤 추가(Action)</button>
 
   </div>
 </template>
 
 <script>
 //vuex 의 mapGetters를 통해 store에 있는 getters를 가져온다
-//vuex 의 mapMytations를 통해 store에 있는 mutations를 가져온다
+//vuex 의 mapMutations를 통해 store에 있는 mutations를 가져온다
 import { mapGetters, mapMutations } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'HelloWorld',
@@ -39,6 +41,9 @@ export default {
     ...mapMutations([
       'addcount',
       'ncount'
+    ]),
+    ...mapActions([
+      'ntimer'
     ])
   }
 }

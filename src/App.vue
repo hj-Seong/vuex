@@ -4,6 +4,13 @@
     <h1>카운터에서 가져온 값입니다 {{count}}</h1>
     <button @click="$store.commit('addcount')">추가</button>
     <button @click="addcount">추가</button>
+    <button @click="addcountaction">추가(Action)</button>
+    <button @click="timer">1초 뒤 추가(Action)</button>
+    <button @click="ntimer({count : 50, time :10000})">10초 뒤 추가(Action)</button>
+
+    <!-- 버튼을 누르면 1초마다 count값이 1씩 증가하는 Action을 만들어서 추가해주세요 -->
+    <!-- setInterval --> 
+    <button @click="timersecond"> 1초마다 1증가</button>
 
     <!-- 버튼을 누르면 1 감소하는 버튼을 추가해주세요 -->
     <button @click="$store.commit('subcount')">감소</button>
@@ -61,8 +68,22 @@ export default {
     }
   },
   methods : {
+    //Mutation의 메서드는 commit을 통해 들고온다.
     addcount : function() {
       this.$store.commit('addcount')
+    },
+    //Action의 메서드는 dispatch를 통해 들고온다
+    addcountaction : function() {
+      this.$store.dispatch('addcount')
+    },
+    timer : function () {
+      this.$store.dispatch('timer')
+    },
+    ntimer : function (time) {
+      this.$store.dispatch('ntimer', time)
+    }, 
+    timersecond : function () {
+      this.$store.dispatch('timersecond')
     }
   }
 }
