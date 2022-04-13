@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+
+    <!-- 모듈의 state값을 꺼내 올 때 : $store.state.모듈이름.값 -->
+    <h3>{{$store.state.a.modulename}}</h3>
+    <button @click="$store.commit('namechange')"></button>
+
     <!-- $store.state.count를 통해서 바로 값을 들고 올수 있다 -->
     <h1>카운터에서 가져온 값입니다 {{count}}</h1>
     <button @click="$store.commit('addcount')">추가</button>
@@ -49,7 +54,7 @@ import HelloWorld from './components/HelloWorld.vue'
 export default {
   name: 'App',
   components : {
-    HelloWorld 
+    HelloWorld
   },
   computed : {
     //머스테치안의 내용이 길어지면 computed를 통해서 출력해줄수있다
