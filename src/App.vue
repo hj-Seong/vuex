@@ -45,6 +45,7 @@
 
     <hello-world></hello-world>
 
+    <button id="btn">내용</button>
   </div>
 </template>
 
@@ -90,6 +91,26 @@ export default {
     timersecond : function () {
       this.$store.dispatch('timersecond')
     }
+  },
+  created () {
+    console.log('app-created');
+  },
+  mounted () { 
+    // 이벤트나 타이머 등의 비동기 함수를 사용할때 사용
+    console.log('app-mounted');
+    this.timersecond();
+
+    //자바스크립트를 사용해서 BOM에 접근가능
+    window.alert("app-mounted")
+
+    //자바스크립트를 사용해서 돔(DOM)에 접근가능
+    const btn = document.querySelector('#btn');
+    btn.innerHTML="이름 바꾸기"
+
+    // js모듈을 만들어서 사용해줄수도 있다.
+  },
+  updated () {
+    console.log('app-updated');
   }
 }
 </script>

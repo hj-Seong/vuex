@@ -45,6 +45,15 @@ export default {
     ...mapActions([
       'ntimer'
     ])
+  },
+  created () {
+    console.log('hello-created');
+  },
+  mounted () {
+    console.log('hello-mounted');
+  },
+  updated () {
+    console.log('hello-updated');
   }
 }
 </script>
